@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smile Studio Stockholm – Estetisk & Modern Tandvård</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ivory: #faf8f4;
+  --cream: #f3f0e8;
+  --warm: #e8e2d4;
+  --dark: #1a1814;
+  --mid: #4a4540;
+  --muted: #8a8580;
+  --light: #b8b2a8;
+  --accent: #2c6e5a;
+  --accent-light: #3d9478;
+  --accent-pale: #e8f2ee;
+  --gold: #c4963a;
+  --gold-pale: #faf3e8;
+  --font-display: 'Fraunces', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --radius: 12px;
+  --shadow: 0 4px 32px rgba(26,24,20,0.08);
+  --shadow-lg: 0 12px 60px rgba(26,24,20,0.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--ivory);color:var(--dark);font-family:var(--font-body);font-weight:300;line-height:1.6;overflow-x:hidden}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--cream)}
+::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;transition:all 0.3s}
+nav.scrolled{background:rgba(250,248,244,0.97);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(26,24,20,0.06)}
+.nav-inner{display:flex;justify-content:space-between;align-items:center;padding:0 3rem;height:76px;max-width:1400px;margin:0 auto}
+.nav-logo{text-decoration:none;display:flex;flex-direction:column;line-height:1}
+.nav-logo-main{font-family:var(--font-display);font-size:1.15rem;font-weight:600;color:var(--dark);letter-spacing:0.01em}
+.nav-logo-sub{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.nav-center{display:flex;gap:0;list-style:none;align-items:center}
+.nav-center a{font-size:0.82rem;font-weight:400;letter-spacing:0.04em;color:var(--mid);text-decoration:none;padding:0.5rem 1.1rem;border-radius:6px;transition:all 0.2s}
+.nav-center a:hover{color:var(--dark);background:rgba(26,24,20,0.04)}
+.nav-right{display:flex;align-items:center;gap:0.75rem}
+.nav-phone{font-size:0.8rem;color:var(--mid);letter-spacing:0.02em}
+.nav-phone span{color:var(--accent);font-weight:500}
+.btn-nav{background:var(--accent);color:white;font-family:var(--font-body);font-weight:500;font-size:0.8rem;letter-spacing:0.06em;padding:0.65rem 1.4rem;border-radius:100px;text-decoration:none;transition:all 0.2s;border:none;cursor:pointer}
+.btn-nav:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 4px 16px rgba(44,110,90,0.25)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:76px;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 100% 50%,rgba(232,242,238,0.8) 0%,transparent 60%);pointer-events:none}
+.hero-left{display:flex;flex-direction:column;justify-content:center;padding:5rem 4rem 5rem 3rem;max-width:680px;position:relative;z-index:1}
+.hero-trust{display:flex;align-items:center;gap:0.75rem;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.8s 0.2s forwards}
+.hero-stars{color:var(--gold);font-size:0.9rem;letter-spacing:2px}
+.hero-trust-text{font-size:0.78rem;color:var(--muted);letter-spacing:0.04em}
+.hero-trust-text strong{color:var(--dark);font-weight:500}
+.hero h1{font-family:var(--font-display);font-size:clamp(3.2rem,5vw,5.5rem);font-weight:300;line-height:1.05;letter-spacing:-0.02em;margin-bottom:1.8rem;opacity:0;animation:fadeUp 0.9s 0.4s forwards}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero h1 strong{font-weight:600}
+.hero-sub{font-size:1.05rem;color:var(--mid);max-width:440px;line-height:1.85;margin-bottom:2.5rem;opacity:0;animation:fadeUp 0.9s 0.6s forwards}
+.hero-actions{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;opacity:0;animation:fadeUp 0.9s 0.8s forwards}
+.btn-primary{background:var(--accent);color:white;font-family:var(--font-body);font-weight:500;font-size:0.88rem;letter-spacing:0.04em;padding:1rem 2rem;border-radius:100px;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 6px 24px rgba(44,110,90,0.25)}
+.btn-outline{border:1.5px solid rgba(26,24,20,0.2);color:var(--mid);font-family:var(--font-body);font-weight:400;font-size:0.88rem;letter-spacing:0.04em;padding:1rem 2rem;border-radius:100px;text-decoration:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.5rem}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.hero-badges{display:flex;gap:1rem;margin-top:2.5rem;opacity:0;animation:fadeUp 0.9s 1s forwards;flex-wrap:wrap}
+.hero-badge{display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;color:var(--muted)}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.hero-right{position:relative;overflow:hidden;background:var(--cream)}
+.hero-img{width:100%;height:100%;object-fit:cover;object-position:center}
+.hero-img-bg{width:100%;height:100%;background:linear-gradient(135deg,#e8f2ee 0%,#d4e8df 40%,#c0dbd2 100%);display:flex;align-items:center;justify-content:center}
+.hero-img-bg p{font-family:var(--font-display);font-style:italic;color:rgba(44,110,90,0.4);font-size:1.1rem}
+.hero-float-card{position:absolute;bottom:3rem;left:-2rem;background:white;border-radius:var(--radius);padding:1.4rem 1.8rem;box-shadow:var(--shadow-lg);min-width:220px;border:1px solid rgba(26,24,20,0.06);animation:float 4s ease-in-out infinite}
+.hero-float-card2{position:absolute;top:3rem;right:-1rem;background:white;border-radius:var(--radius);padding:1.2rem 1.6rem;box-shadow:var(--shadow-lg);border:1px solid rgba(26,24,20,0.06);animation:float 4s ease-in-out infinite 2s}
+.float-num{font-family:var(--font-display);font-size:2rem;font-weight:600;color:var(--accent);line-height:1}
+.float-label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.25rem}
+.float-rating{font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:var(--gold);line-height:1}
+.float-stars{color:var(--gold);font-size:0.7rem;margin:0.2rem 0}
+.float-sub{font-size:0.7rem;color:var(--muted)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* TRUST BAR */
+.trust-bar{background:var(--dark);padding:1.4rem 3rem;display:flex;justify-content:center;align-items:center;gap:4rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:0.75rem;font-size:0.8rem;color:rgba(250,248,244,0.6);letter-spacing:0.06em}
+.trust-item strong{color:var(--ivory);font-weight:500}
+.trust-divider{width:1px;height:20px;background:rgba(255,255,255,0.1)}
+
+/* BEHANDLINGAR */
+#behandlingar{padding:8rem 3rem;background:var(--ivory)}
+.section-eyebrow{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;font-weight:500}
+.section-title{font-family:var(--font-display);font-size:clamp(2.2rem,4vw,3.8rem);font-weight:300;line-height:1.1;letter-spacing:-0.02em}
+.section-title em{font-style:italic;color:var(--accent)}
+.section-title strong{font-weight:600}
+.treatments-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+.treatments-intro-right{display:flex;flex-direction:column;justify-content:flex-end;gap:1.5rem}
+.treatments-intro-right p{color:var(--mid);line-height:1.85;font-size:0.95rem}
+.treatments-tabs{display:flex;gap:0.5rem;margin-bottom:3rem;flex-wrap:wrap}
+.tab-btn{font-family:var(--font-body);font-size:0.8rem;font-weight:500;letter-spacing:0.06em;padding:0.55rem 1.2rem;border-radius:100px;border:1.5px solid transparent;cursor:pointer;transition:all 0.2s;background:transparent;color:var(--muted)}
+.tab-btn:hover{color:var(--dark);border-color:rgba(26,24,20,0.15)}
+.tab-btn.active{background:var(--accent);color:white;border-color:var(--accent)}
+.treatments-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.treatment-card{background:white;border:1px solid rgba(26,24,20,0.06);border-radius:var(--radius);overflow:hidden;transition:all 0.3s;cursor:pointer}
+.treatment-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:rgba(44,110,90,0.2)}
+.treatment-img{height:180px;background:var(--cream);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.treatment-img img{width:100%;height:100%;object-fit:cover}
+.treatment-img-ph{font-family:var(--font-display);font-style:italic;color:var(--light);font-size:0.9rem}
+.treatment-price-badge{position:absolute;top:1rem;right:1rem;background:white;border-radius:100px;padding:0.3rem 0.8rem;font-size:0.72rem;font-weight:500;color:var(--accent);box-shadow:0 2px 8px rgba(26,24,20,0.1)}
+.treatment-body{padding:1.5rem}
+.treatment-name{font-family:var(--font-display);font-size:1.2rem;font-weight:600;margin-bottom:0.5rem}
+.treatment-desc{font-size:0.85rem;color:var(--mid);line-height:1.7;margin-bottom:1.2rem}
+.treatment-meta{display:flex;justify-content:space-between;align-items:center;padding-top:1rem;border-top:1px solid rgba(26,24,20,0.06)}
+.treatment-time{font-size:0.75rem;color:var(--muted);display:flex;align-items:center;gap:0.4rem}
+.treatment-link{font-size:0.75rem;font-weight:500;color:var(--accent);text-decoration:none;display:flex;align-items:center;gap:0.3rem;transition:gap 0.2s}
+.treatment-link:hover{gap:0.6rem}
+
+/* FÖRE EFTER */
+#forafter{padding:8rem 3rem;background:var(--cream)}
+.forafter-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+.forafter-intro p{color:var(--mid);line-height:1.85;font-size:0.95rem;margin-top:1rem}
+.forafter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.forafter-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.forafter-imgs{display:grid;grid-template-columns:1fr 1fr;height:220px;position:relative}
+.forafter-img{background:linear-gradient(135deg,var(--warm),var(--cream));display:flex;align-items:center;justify-content:center;position:relative}
+.forafter-img.after{background:linear-gradient(135deg,var(--accent-pale),#d0e8e0)}
+.forafter-img p{font-size:0.75rem;color:var(--muted);font-family:var(--font-display);font-style:italic}
+.forafter-label{position:absolute;bottom:0.6rem;left:50%;transform:translateX(-50%);font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.2rem 0.6rem;border-radius:100px;font-weight:500}
+.label-before{background:rgba(26,24,20,0.08);color:var(--mid)}
+.label-after{background:var(--accent);color:white}
+.forafter-divider{position:absolute;left:50%;top:0;bottom:0;width:2px;background:white;z-index:2}
+.forafter-divider-dot{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;background:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.7rem;color:var(--mid);box-shadow:0 2px 8px rgba(26,24,20,0.15);z-index:3}
+.forafter-info{padding:1.2rem 1.5rem}
+.forafter-treatment{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:0.3rem}
+.forafter-name{font-family:var(--font-display);font-size:1.1rem;font-weight:600}
+.forafter-quote{font-size:0.82rem;color:var(--mid);line-height:1.6;margin-top:0.5rem;font-style:italic}
+
+/* TEAM */
+#team{padding:8rem 3rem;background:var(--ivory)}
+.team-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+.team-intro p{color:var(--mid);line-height:1.85;font-size:0.95rem;margin-top:1rem}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.team-card{border-radius:var(--radius);overflow:hidden;background:white;border:1px solid rgba(26,24,20,0.06);transition:all 0.3s}
+.team-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.team-photo{height:280px;background:linear-gradient(160deg,var(--cream),var(--warm));position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.team-photo img{width:100%;height:100%;object-fit:cover;object-position:center top}
+.team-photo-ph{font-family:var(--font-display);font-style:italic;color:var(--light);font-size:0.85rem}
+.team-specialty-tag{position:absolute;bottom:1rem;left:1rem;background:white;border-radius:100px;padding:0.25rem 0.75rem;font-size:0.68rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:500;color:var(--accent);box-shadow:0 2px 8px rgba(26,24,20,0.1)}
+.team-info{padding:1.3rem}
+.team-name{font-family:var(--font-display);font-size:1.1rem;font-weight:600;margin-bottom:0.2rem}
+.team-title{font-size:0.78rem;color:var(--muted);margin-bottom:0.6rem}
+.team-langs{font-size:0.72rem;color:var(--mid);display:flex;align-items:center;gap:0.4rem}
+.team-langs::before{content:'🗣';font-size:0.7rem}
+
+/* PRISER */
+#priser{padding:8rem 3rem;background:var(--cream)}
+.priser-intro{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:end;margin-bottom:4rem}
+.priser-intro p{color:var(--mid);line-height:1.85;font-size:0.95rem;margin-top:1rem}
+.bidrag-box{background:var(--accent-pale);border:1.5px solid rgba(44,110,90,0.2);border-radius:var(--radius);padding:1.5rem 2rem;display:flex;gap:1.5rem;align-items:center;margin-bottom:3rem}
+.bidrag-icon{font-size:2rem;flex-shrink:0}
+.bidrag-text h4{font-weight:600;font-size:0.95rem;margin-bottom:0.3rem}
+.bidrag-text p{font-size:0.85rem;color:var(--mid);line-height:1.6}
+.priser-table{background:white;border-radius:var(--radius);overflow:hidden;border:1px solid rgba(26,24,20,0.06)}
+.priser-category{border-bottom:1px solid rgba(26,24,20,0.06)}
+.priser-category:last-child{border-bottom:none}
+.priser-cat-header{padding:1.2rem 2rem;background:var(--cream);display:flex;justify-content:space-between;align-items:center;cursor:pointer;transition:background 0.2s}
+.priser-cat-header:hover{background:var(--warm)}
+.priser-cat-name{font-family:var(--font-display);font-size:1rem;font-weight:600;display:flex;align-items:center;gap:0.75rem}
+.priser-cat-icon{font-size:1.1rem}
+.priser-cat-toggle{font-size:0.8rem;color:var(--muted);transition:transform 0.2s}
+.priser-cat-toggle.open{transform:rotate(180deg)}
+.priser-items{display:none;padding:0.5rem 0}
+.priser-items.open{display:block}
+.priser-item{display:flex;justify-content:space-between;align-items:center;padding:0.85rem 2rem;border-bottom:1px solid rgba(26,24,20,0.04)}
+.priser-item:last-child{border-bottom:none}
+.priser-item-name{font-size:0.9rem;color:var(--dark)}
+.priser-item-note{font-size:0.75rem;color:var(--muted);margin-top:0.15rem}
+.priser-item-price{font-weight:500;font-size:0.9rem;color:var(--accent);text-align:right;white-space:nowrap}
+.priser-item-price span{display:block;font-size:0.72rem;color:var(--muted);font-weight:300}
+
+/* RECENSIONER */
+#recensioner{padding:8rem 3rem;background:var(--ivory)}
+.recensioner-intro{text-align:center;margin-bottom:4rem}
+.recensioner-intro .section-eyebrow{display:block}
+.rating-big{display:flex;align-items:center;justify-content:center;gap:1.5rem;margin:1.5rem 0}
+.rating-num{font-family:var(--font-display);font-size:5rem;font-weight:300;color:var(--dark);line-height:1}
+.rating-right{text-align:left}
+.rating-stars{color:var(--gold);font-size:1.4rem;letter-spacing:3px}
+.rating-count{font-size:0.82rem;color:var(--muted);margin-top:0.3rem}
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.review-card{background:white;border:1px solid rgba(26,24,20,0.06);border-radius:var(--radius);padding:2rem;transition:all 0.3s}
+.review-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+.review-stars{color:var(--gold);font-size:0.8rem;letter-spacing:2px;margin-bottom:1rem}
+.review-text{font-size:0.9rem;color:var(--mid);line-height:1.8;font-style:italic;margin-bottom:1.5rem}
+.review-author{display:flex;align-items:center;gap:0.75rem}
+.review-avatar{width:38px;height:38px;border-radius:50%;background:var(--accent-pale);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:0.9rem;font-weight:600;color:var(--accent);flex-shrink:0}
+.review-name{font-size:0.85rem;font-weight:500;color:var(--dark)}
+.review-date{font-size:0.72rem;color:var(--muted)}
+.review-source{font-size:0.7rem;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-left:auto}
+
+/* BOKNING */
+#bokning{padding:8rem 3rem;background:var(--dark);color:var(--ivory)}
+.bokning-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;max-width:1200px;margin:0 auto}
+.bokning-left .section-eyebrow{color:rgba(232,242,238,0.6)}
+.bokning-left .section-title{color:var(--ivory)}
+.bokning-left .section-title em{color:rgba(232,242,238,0.7)}
+.bokning-left p{color:rgba(250,248,244,0.6);line-height:1.85;font-size:0.95rem;margin-top:1.5rem;margin-bottom:2rem}
+.bokning-features{display:flex;flex-direction:column;gap:1rem;margin-bottom:2.5rem}
+.bokning-feature{display:flex;align-items:center;gap:1rem;font-size:0.88rem;color:rgba(250,248,244,0.7)}
+.bokning-feature-check{width:20px;height:20px;border-radius:50%;background:rgba(44,110,90,0.3);border:1px solid rgba(44,110,90,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.65rem;color:var(--accent-light)}
+.bokning-contact{display:flex;flex-direction:column;gap:0.75rem}
+.contact-item{display:flex;align-items:center;gap:0.75rem;font-size:0.85rem;color:rgba(250,248,244,0.5)}
+.contact-item a{color:rgba(250,248,244,0.7);text-decoration:none;transition:color 0.2s}
+.contact-item a:hover{color:var(--ivory)}
+.contact-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.booking-form{background:var(--ivory);border-radius:16px;padding:2.5rem;color:var(--dark)}
+.booking-form-title{font-family:var(--font-display);font-size:1.8rem;font-weight:600;margin-bottom:0.4rem;color:var(--dark)}
+.booking-form-sub{font-size:0.82rem;color:var(--muted);margin-bottom:2rem}
+.form-steps{display:flex;gap:0;margin-bottom:2rem;border-bottom:1px solid rgba(26,24,20,0.08);padding-bottom:1rem}
+.form-step{font-size:0.75rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--light);padding:0.3rem 1rem;cursor:pointer;transition:all 0.2s;border-radius:100px}
+.form-step.active{color:var(--accent);background:var(--accent-pale);font-weight:500}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;font-weight:500}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:0.85rem 1rem;background:white;border:1.5px solid rgba(26,24,20,0.1);color:var(--dark);font-family:var(--font-body);font-size:0.9rem;outline:none;transition:border-color 0.2s;border-radius:8px}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(44,110,90,0.08)}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-submit{width:100%;background:var(--accent);color:white;border:none;padding:1rem;font-family:var(--font-body);font-weight:500;font-size:0.88rem;letter-spacing:0.06em;cursor:pointer;transition:all 0.2s;border-radius:100px;margin-top:0.5rem;display:flex;align-items:center;justify-content:center;gap:0.5rem}
+.form-submit:hover{background:var(--accent-light);transform:translateY(-1px);box-shadow:0 6px 24px rgba(44,110,90,0.25)}
+.form-note{font-size:0.72rem;color:var(--muted);text-align:center;margin-top:0.75rem}
+
+/* INFO-SEKTION */
+#info{padding:8rem 3rem;background:var(--cream)}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.info-card{background:white;border-radius:var(--radius);padding:2.5rem;border:1px solid rgba(26,24,20,0.06);transition:all 0.3s}
+.info-card:hover{box-shadow:var(--shadow);transform:translateY(-3px)}
+.info-icon{font-size:2rem;margin-bottom:1.2rem}
+.info-title{font-family:var(--font-display);font-size:1.3rem;font-weight:600;margin-bottom:0.8rem}
+.info-text{font-size:0.88rem;color:var(--mid);line-height:1.8}
+.info-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:500;color:var(--accent);text-decoration:none;margin-top:1.2rem;transition:gap 0.2s}
+.info-link:hover{gap:0.7rem}
+
+/* FAQ */
+#faq{padding:8rem 3rem;background:var(--ivory);max-width:none}
+.faq-wrap{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start}
+.faq-left p{color:var(--mid);line-height:1.85;margin-top:1rem}
+.faq-left .btn-primary{margin-top:2rem;display:inline-flex}
+.faq-list{display:flex;flex-direction:column;gap:0}
+.faq-item{border-bottom:1px solid rgba(26,24,20,0.08)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:1.3rem 0;cursor:pointer;font-size:0.95rem;font-weight:500;color:var(--dark);transition:color 0.2s;gap:1rem}
+.faq-q:hover{color:var(--accent)}
+.faq-icon{font-size:1.1rem;color:var(--muted);flex-shrink:0;transition:transform 0.25s}
+.faq-icon.open{transform:rotate(45deg);color:var(--accent)}
+.faq-a{display:none;padding-bottom:1.3rem;font-size:0.88rem;color:var(--mid);line-height:1.85}
+.faq-a.open{display:block}
+
+/* FOOTER */
+footer{background:var(--dark);color:var(--ivory)}
+.footer-top{padding:5rem 3rem 3rem;display:grid;grid-template-columns:2.5fr 1fr 1fr 1fr;gap:4rem;border-bottom:1px solid rgba(255,255,255,0.06)}
+.footer-brand .footer-logo-main{font-family:var(--font-display);font-size:1.3rem;font-weight:600;color:var(--ivory)}
+.footer-brand .footer-logo-sub{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(250,248,244,0.4);margin-top:3px;display:block}
+.footer-brand p{font-size:0.85rem;color:rgba(250,248,244,0.45);line-height:1.8;max-width:280px;margin-top:1rem}
+.footer-rating{display:flex;align-items:center;gap:0.75rem;margin-top:1.5rem}
+.footer-rating-num{font-family:var(--font-display);font-size:1.5rem;font-weight:300;color:var(--gold)}
+.footer-rating-stars{color:var(--gold);font-size:0.7rem;letter-spacing:2px;display:block}
+.footer-rating-text{font-size:0.72rem;color:rgba(250,248,244,0.4)}
+.footer-col h4{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:rgba(250,248,244,0.4);margin-bottom:1.2rem;font-weight:500}
+.footer-col a{display:block;font-size:0.85rem;color:rgba(250,248,244,0.6);text-decoration:none;margin-bottom:0.6rem;transition:color 0.2s}
+.footer-col a:hover{color:var(--ivory)}
+.footer-bottom{padding:2rem 3rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+.footer-bottom p{font-size:0.78rem;color:rgba(250,248,244,0.3)}
+.footer-bottom a{color:rgba(250,248,244,0.3);text-decoration:none;transition:color 0.2s}
+.footer-bottom a:hover{color:rgba(250,248,244,0.6)}
+
+/* MODAL BOKNING */
+.modal-overlay{position:fixed;inset:0;background:rgba(26,24,20,0.6);z-index:500;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;backdrop-filter:blur(4px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal{background:var(--ivory);border-radius:20px;padding:2.5rem;max-width:520px;width:90%;max-height:90vh;overflow-y:auto;transform:translateY(20px);transition:transform 0.3s;position:relative}
+.modal-overlay.open .modal{transform:translateY(0)}
+.modal-close{position:absolute;top:1.2rem;right:1.2rem;width:32px;height:32px;border-radius:50%;background:rgba(26,24,20,0.06);border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;color:var(--mid);transition:background 0.2s}
+.modal-close:hover{background:rgba(26,24,20,0.12)}
+.modal h3{font-family:var(--font-display);font-size:1.6rem;font-weight:600;margin-bottom:0.3rem}
+.modal-sub{font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem}
+
+/* STICKY BOOK BTN MOBILE */
+.sticky-book{display:none;position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);z-index:150;background:var(--accent);color:white;padding:1rem 2.5rem;border-radius:100px;font-family:var(--font-body);font-weight:500;font-size:0.88rem;box-shadow:0 8px 30px rgba(44,110,90,0.35);border:none;cursor:pointer;transition:all 0.2s}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:900px){
+  .nav-center,.nav-phone{display:none}
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero-left{padding:3rem 1.5rem 2rem}
+  .hero-right{height:360px}
+  .hero-float-card,.hero-float-card2{display:none}
+  .trust-bar{gap:1.5rem;padding:1.4rem 1.5rem}
+  #behandlingar,#forafter,#team,#priser,#recensioner,#bokning,#info,#faq{padding:5rem 1.5rem}
+  .treatments-intro,.forafter-intro,.team-intro,.priser-intro,.bokning-wrap,.faq-wrap{grid-template-columns:1fr;gap:2rem}
+  .treatments-grid,.forafter-grid,.team-grid,.reviews-grid,.info-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;align-items:flex-start}
+  .form-row{grid-template-columns:1fr}
+  .sticky-book{display:block}
+  .nav-inner{padding:0 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Boka din tid</h3>
+    <p class="modal-sub">Välj behandling och tid — vi bekräftar inom en timme.</p>
+    <div class="form-group">
+      <label>Behandling</label>
+      <select>
+        <option value="">Välj behandling...</option>
+        <optgroup label="Allmäntandvård">
+          <option>Undersökning & röntgen – 650 kr</option>
+          <option>Tandrengöring (hygienist) – 850 kr</option>
+          <option>Lagning (komposit) – från 1 200 kr</option>
+        </optgroup>
+        <optgroup label="Estetisk tandvård">
+          <option>Tandblekning (klinik) – 3 500 kr</option>
+          <option>Tandblekning (hemma) – 1 800 kr</option>
+          <option>Porslinfasader – från 4 500 kr/tand</option>
+          <option>Invisalign – från 29 000 kr</option>
+        </optgroup>
+        <optgroup label="Implantat">
+          <option>Tandimplantat – från 18 000 kr</option>
+          <option>All-on-4 – från 75 000 kr</option>
+        </optgroup>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group"><label>Förnamn</label><input type="text" placeholder="Anna"></div>
+      <div class="form-group"><label>Efternamn</label><input type="text" placeholder="Lindqvist"></div>
+    </div>
+    <div class="form-group"><label>E-post</label><input type="email" placeholder="anna@exempel.se"></div>
+    <div class="form-group"><label>Telefon</label><input type="tel" placeholder="070-000 00 00"></div>
+    <div class="form-group"><label>Önskat datum</label><input type="date"></div>
+    <div class="form-group"><label>Meddelande (valfritt)</label><textarea placeholder="Berätta gärna om dina besvär eller önskemål..."></textarea></div>
+    <button class="form-submit" onclick="closeModal();alert('Tack! Vi återkommer inom en timme.')">Skicka bokningsförfrågan →</button>
+    <p class="form-note">🔒 Dina uppgifter hanteras enligt GDPR</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="nav-logo-main">Smile Studio</span>
+      <span class="nav-logo-sub">Stockholm</span>
+    </a>
+    <ul class="nav-center">
+      <li><a href="#behandlingar">Behandlingar</a></li>
+      <li><a href="#forafter">Resultat</a></li>
+      <li><a href="#team">Vårt team</a></li>
+      <li><a href="#priser">Priser</a></li>
+      <li><a href="#recensioner">Recensioner</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-phone">Ring oss: <span>08-123 456 78</span></span>
+      <button class="btn-nav" onclick="openModal()">Boka tid</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-trust">
+      <span class="hero-stars">★★★★★</span>
+      <span class="hero-trust-text"><strong>4.9/5</strong> baserat på 847 recensioner på Google</span>
+    </div>
+    <h1>Ditt vackraste<br><em>leende</em> —<br><strong>garanterat.</strong></h1>
+    <p class="hero-sub">Estetisk och allmän tandvård i världsklass. Vi kombinerar den senaste tekniken med genuint personlig omvårdnad för ett resultat du älskar att visa.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="openModal()">Boka gratis konsultation →</button>
+      <a href="#behandlingar" class="btn-outline">Utforska behandlingar</a>
+    </div>
+    <div class="hero-badges">
+      <span class="hero-badge"><span class="hero-badge-dot"></span>Öppet även kvällar & helger</span>
+      <span class="hero-badge"><span class="hero-badge-dot"></span>Anslutna till Försäkringskassan</span>
+      <span class="hero-badge"><span class="hero-badge-dot"></span>Fri avbokning 24h</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-bg">
+      <p>Klinikfoto</p>
+    </div>
+    <div class="hero-float-card">
+      <div class="float-num">2 400+</div>
+      <div class="float-label">Nöjda patienter</div>
+    </div>
+    <div class="hero-float-card2">
+      <div class="float-rating">4.9</div>
+      <div class="float-stars">★★★★★</div>
+      <div class="float-sub">Google-betyg</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-item"><strong>15+ år</strong> i branschen</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><strong>Senaste tekniken</strong> — 3D-scanning & digital röntgen</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><strong>Anslutna</strong> till Försäkringskassan</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><strong>Öppet</strong> mån–lör, kvällar & helger</div>
+  <div class="trust-divider"></div>
+  <div class="trust-item"><strong>Gratis</strong> förstabesökskonsultation</div>
+</div>
+
+<!-- BEHANDLINGAR -->
+<section id="behandlingar">
+  <div class="treatments-intro">
+    <div>
+      <p class="section-eyebrow">Behandlingar</p>
+      <h2 class="section-title">Allt du<br>behöver för ett<br><em>perfekt leende</em></h2>
+    </div>
+    <div class="treatments-intro-right">
+      <p>Vi erbjuder hela spektrumet av modern tandvård — från förebyggande behandlingar och akuttandvård till avancerad estetisk tandvård och implantat. Alla under samma tak.</p>
+      <button class="btn-primary" onclick="openModal()" style="align-self:flex-start">Boka konsultation →</button>
+    </div>
+  </div>
+  <div class="treatments-tabs">
+    <button class="tab-btn active" onclick="filterTreatments('alla',this)">Alla behandlingar</button>
+    <button class="tab-btn" onclick="filterTreatments('estetisk',this)">Estetisk tandvård</button>
+    <button class="tab-btn" onclick="filterTreatments('allmän',this)">Allmäntandvård</button>
+    <button class="tab-btn" onclick="filterTreatments('implantat',this)">Implantat</button>
+    <button class="tab-btn" onclick="filterTreatments('barn',this)">Barntandvård</button>
+  </div>
+  <div class="treatments-grid" id="treatments-grid">
+    <div class="treatment-card" data-cat="estetisk allmän">
+      <div class="treatment-img"><div class="treatment-img-ph">Tandblekning</div><span class="treatment-price-badge">Från 1 800 kr</span></div>
+      <div class="treatment-body">
+        <h3 class="treatment-name">Tandblekning</h3>
+        <p class="treatment-desc">Professionell blekning ger upp till 8 nyanser vitare tänder. Vi erbjuder både klinikblekning för snabbt resultat och hemblekning för din bekvämlighet.</p>
+        <div class="treatment-meta">
+          <span class="treatment-time">⏱ 60–90 min</span>
+          <a href="#" class="treatment-link" onclick="openModal();return false">Boka →</a>
+        </div>
+      </div>
+    </div>
+    <div class="treatment-card" data-cat="estetisk">
+      <div class="treatment-img"><div class="treatment-img-ph">Porslinfasader</div><span class="treatment-price-badge">Från 4 500 kr/tand</span></div>
+      <div class="treatment-body">
+        <h3 class="treatment-name">Porslinfasader</h3>
+        <p class="treatment-desc">Tunna porslinsskal som fästs på framsidan av tänderna. Korrigerar missfärgning, sprickor och ojämnheter för ett naturligt vackert resultat som håller i decennier.</p>
+        <div class="treatment-meta">
+          <span class="treatment-time">⏱ 2 besök</span>
+          <a href="#" class="treatment-link" onclick="openModal();return false">Boka →</a>
+        </div>
+      </div>
+    </div>
+    <div class="treatment-card" data-cat="estetisk">
+      <div class="treatment-img"><div class="treatment-img-ph">Invisalign</div><span class="treatment-price-badge">Från 29 000 kr</span></div>
+      <div class="treatment-body">
+        <h3 class="treatment-name">Invisalign</h3>
+        <p class="treatment-desc">Osynlig tandreglering med avtagbara skenor. Räta ut tänderna utan metallskenor — diskret, bekvämt och effektivt. Gratis 3D-simulering ingår.</p>
+        <div class="treatment-meta">
+          <span class="treatment-time">⏱ 6–18 månader</span>
+          <a href="#" class="treatment-link" onclick="openModal();return false">Boka →</a>
+        </div>
+      </div>
+    </div>
+    <div class="treatment-card" data-cat="implantat">
+      <div class="treatment-img"><div class="treatment-img-ph">Tandimplantat</div><span class="treatment-price-badge">Från 18 000 kr</span></div>
+      <div class="treatment-body">
+        <h3 class="treatment-name">Tandimplantat</h3>
+        <p class="treatment-desc">Den permanenta lösningen för saknade tänder. En titanskruv i käkbenet ger ett konstgjord tand som ser ut, känns och fungerar som en riktig tand.</p>
+        <div class="treatment-meta">
+          <span class="treatment-time">⏱ 3–6 månader</span>
+          <a href="#" class="treatment-link" onclick="openModal();return false">Boka →</a>
+        </div>
+      </div>
+    </div>
+    <div class="treatment-card" data-cat="allmän">
+      <div class="treatment-img"><div class="treatment-img-ph">Tandrengöring</div><span class="treatment-price-badge">Från 850 kr</span></div>
+      <div class="treatment-body">
+        <h3 class="treatment-name">Tandrengöring & hygienist</h3>
+        <p class="treatment-desc">Professionell tandrengöring som tar bort tandsten och beläggningar som tandborsten inte når. Förebygger karies, tandlossning och dålig andedräkt.</p>
+        <div class="treatment-meta">
+          <span class="treatment-time">⏱ 45–60 min</span>
+          <a href="#" class="treatment-link" onclick="openModal();return false">Boka →</a>
+        </div>
+      </div>
+    </div>
+    <div class="treatment-card" data-cat="barn">
+      <div class="treatment-img"><div class="treatment-img-ph">Barntandvård</div><span class="treatment-price-badge">Fri t.o.m. 19 år</span></div>
+      <div class="treatment-body">
+        <h3 class="treatment-name">Barntandvård</h3>
+        <p class="treatment-desc">Vi skapar trygga och positiva tandvårdsupplevelser för barn. Gratis tandvård för barn och ungdomar upp till 19 år. Vi tar oss tid och anpassar besöket efter varje barn.</p>
+        <div class="treatment-meta">
+          <span class="treatment-time">⏱ 30–45 min</span>
+          <a href="#" class="treatment-link" onclick="openModal();return false">Boka →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FÖRE/EFTER -->
+<section id="forafter">
+  <div class="forafter-intro">
+    <div>
+      <p class="section-eyebrow">Patientresultat</p>
+      <h2 class="section-title">Riktiga resultat<br>från <em>riktiga</em><br>patienter</h2>
+    </div>
+    <p>Dessa är äkta resultat från våra patienter. Alla behandlingar är utförda på vår klinik i Stockholm. Namn och bilder publiceras med patientens medgivande.</p>
+  </div>
+  <div class="forafter-grid">
+    <div class="forafter-card">
+      <div class="forafter-imgs">
+        <div class="forafter-img"><p>Före</p><span class="forafter-label label-before">Före</span></div>
+        <div class="forafter-img after"><p>Efter</p><span class="forafter-label label-after">Efter</span></div>
+        <div class="forafter-divider"><div class="forafter-divider-dot">⟷</div></div>
+      </div>
+      <div class="forafter-info">
+        <p class="forafter-treatment">Tandblekning + fasader</p>
+        <h4 class="forafter-name">Maria, 34 år</h4>
+        <p class="forafter-quote">"Jag har aldrig vågat le med öppen mun. Nu kan jag inte sluta."</p>
+      </div>
+    </div>
+    <div class="forafter-card">
+      <div class="forafter-imgs">
+        <div class="forafter-img"><p>Före</p><span class="forafter-label label-before">Före</span></div>
+        <div class="forafter-img after"><p>Efter</p><span class="forafter-label label-after">Efter</span></div>
+        <div class="forafter-divider"><div class="forafter-divider-dot">⟷</div></div>
+      </div>
+      <div class="forafter-info">
+        <p class="forafter-treatment">Invisalign</p>
+        <h4 class="forafter-name">Erik, 28 år</h4>
+        <p class="forafter-quote">"Ingen märkte att jag hade skenor. 14 månader senare — perfekt!"</p>
+      </div>
+    </div>
+    <div class="forafter-card">
+      <div class="forafter-imgs">
+        <div class="forafter-img"><p>Före</p><span class="forafter-label label-before">Före</span></div>
+        <div class="forafter-img after"><p>Efter</p><span class="forafter-label label-after">Efter</span></div>
+        <div class="forafter-divider"><div class="forafter-divider-dot">⟷</div></div>
+      </div>
+      <div class="forafter-info">
+        <p class="forafter-treatment">Tandimplantat</p>
+        <h4 class="forafter-name">Gunilla, 58 år</h4>
+        <p class="forafter-quote">"Äntligen kan jag äta vad jag vill igen. Borde gjort detta för år sedan."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="team-intro">
+    <div>
+      <p class="section-eyebrow">Vårt team</p>
+      <h2 class="section-title">Möt dina<br><em>tandläkare</em></h2>
+    </div>
+    <p>Alla våra tandläkare är legitimerade med specialistutbildning inom sina respektive områden. Vi talar svenska, engelska och flera andra språk — boka hos den som passar dig bäst.</p>
+  </div>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-ph">Foto</div><span class="team-specialty-tag">Klinikchef</span></div>
+      <div class="team-info">
+        <h3 class="team-name">Dr. Sofia Eriksson</h3>
+        <p class="team-title">Legitimerad tandläkare, Spec. estetik</p>
+        <p class="team-langs">Svenska, Engelska, Tyska</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-ph">Foto</div><span class="team-specialty-tag">Implantat</span></div>
+      <div class="team-info">
+        <h3 class="team-name">Dr. Marcus Lindahl</h3>
+        <p class="team-title">Specialist oral kirurgi & implantat</p>
+        <p class="team-langs">Svenska, Engelska</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-ph">Foto</div><span class="team-specialty-tag">Ortodonti</span></div>
+      <div class="team-info">
+        <h3 class="team-name">Dr. Yasmin Karim</h3>
+        <p class="team-title">Tandläkare & Invisalign-certifierad</p>
+        <p class="team-langs">Svenska, Engelska, Arabiska</p>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-photo"><div class="team-photo-ph">Foto</div><span class="team-specialty-tag">Hygienist</span></div>
+      <div class="team-info">
+        <h3 class="team-name">Anna Bergqvist</h3>
+        <p class="team-title">Leg. tandhygienist, 12 år erfarenhet</p>
+        <p class="team-langs">Svenska, Engelska</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRISER -->
+<section id="priser">
+  <div class="priser-intro">
+    <div>
+      <p class="section-eyebrow">Priser</p>
+      <h2 class="section-title">Tydliga priser,<br><em>inga</em> överraskningar</h2>
+    </div>
+    <p>Vi tror på full transparens. Alla priser är inklusive moms. Det allmänna tandvårdsbidraget (ATB) dras alltid av direkt — du betalar aldrig mer än du behöver.</p>
+  </div>
+  <div class="bidrag-box">
+    <span class="bidrag-icon">💰</span>
+    <div class="bidrag-text">
+      <h4>Tandvårdsbidraget dras av direkt</h4>
+      <p>Vi är anslutna till Försäkringskassan. Ditt allmänna tandvårdsbidrag (300–600 kr/år beroende på ålder) och högkostnadsskyddet appliceras automatiskt på din nota — du behöver inte göra något.</p>
+    </div>
+  </div>
+  <div class="priser-table">
+    <div class="priser-category">
+      <div class="priser-cat-header" onclick="toggleCategory(this)">
+        <span class="priser-cat-name"><span class="priser-cat-icon">🔍</span>Undersökning & förebyggande</span>
+        <span class="priser-cat-toggle open">▼</span>
+      </div>
+      <div class="priser-items open">
+        <div class="priser-item"><div><div class="priser-item-name">Basundersökning</div><div class="priser-item-note">Inkl. röntgen vid behov</div></div><div class="priser-item-price">650 kr<span>efter bidrag fr. 50 kr</span></div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Tandrengöring (hygienist)</div><div class="priser-item-note">30–45 min</div></div><div class="priser-item-price">850 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Digital röntgen (helstatus)</div><div class="priser-item-note">Panoramaröntgen</div></div><div class="priser-item-price">450 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Akuttandvård</div><div class="priser-item-note">Prioriterade tider samma dag</div></div><div class="priser-item-price">750 kr</div></div>
+      </div>
+    </div>
+    <div class="priser-category">
+      <div class="priser-cat-header" onclick="toggleCategory(this)">
+        <span class="priser-cat-name"><span class="priser-cat-icon">✨</span>Estetisk tandvård</span>
+        <span class="priser-cat-toggle">▼</span>
+      </div>
+      <div class="priser-items">
+        <div class="priser-item"><div><div class="priser-item-name">Tandblekning (klinik)</div><div class="priser-item-note">Upp till 8 nyanser vitare</div></div><div class="priser-item-price">3 500 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Tandblekning (hemma)</div><div class="priser-item-note">Skräddarsydda skenor ingår</div></div><div class="priser-item-price">1 800 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Porslinfasader</div><div class="priser-item-note">Per tand</div></div><div class="priser-item-price">fr. 4 500 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Invisalign Lite</div><div class="priser-item-note">Mindre justeringar</div></div><div class="priser-item-price">fr. 19 000 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Invisalign Comprehensive</div><div class="priser-item-note">Fullständig tandreglering</div></div><div class="priser-item-price">fr. 29 000 kr</div></div>
+      </div>
+    </div>
+    <div class="priser-category">
+      <div class="priser-cat-header" onclick="toggleCategory(this)">
+        <span class="priser-cat-name"><span class="priser-cat-icon">🦷</span>Lagningar & kronor</span>
+        <span class="priser-cat-toggle">▼</span>
+      </div>
+      <div class="priser-items">
+        <div class="priser-item"><div><div class="priser-item-name">Komposit lagning (liten)</div><div class="priser-item-note">1 yta</div></div><div class="priser-item-price">fr. 1 200 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Komposit lagning (stor)</div><div class="priser-item-note">3+ ytor</div></div><div class="priser-item-price">fr. 2 400 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Porslinskrona</div><div class="priser-item-note">Per tand, inkl. intryck</div></div><div class="priser-item-price">fr. 6 500 kr</div></div>
+      </div>
+    </div>
+    <div class="priser-category">
+      <div class="priser-cat-header" onclick="toggleCategory(this)">
+        <span class="priser-cat-name"><span class="priser-cat-icon">⚙️</span>Implantat</span>
+        <span class="priser-cat-toggle">▼</span>
+      </div>
+      <div class="priser-items">
+        <div class="priser-item"><div><div class="priser-item-name">Enstaka implantat</div><div class="priser-item-note">Inkl. krona och abutment</div></div><div class="priser-item-price">fr. 18 000 kr</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">All-on-4</div><div class="priser-item-note">Hel käke, fast bro</div></div><div class="priser-item-price">fr. 75 000 kr/käke</div></div>
+        <div class="priser-item"><div><div class="priser-item-name">Benuppbyggnad</div><div class="priser-item-note">Vid behov, per område</div></div><div class="priser-item-price">fr. 8 000 kr</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONER -->
+<section id="recensioner">
+  <div class="recensioner-intro">
+    <p class="section-eyebrow">Recensioner</p>
+    <h2 class="section-title">Vad våra patienter säger</h2>
+    <div class="rating-big">
+      <div class="rating-num">4.9</div>
+      <div class="rating-right">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-count">Baserat på 847 recensioner · Google</div>
+      </div>
+    </div>
+  </div>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Jag var väldigt tandvårdsrädd men personalen här fick mig att känna mig helt trygg. Behandlingen gick snabbt och smärtfritt. Rekommenderar varmt!"</p>
+      <div class="review-author">
+        <div class="review-avatar">KL</div>
+        <div><div class="review-name">Kristina L.</div><div class="review-date">för 2 veckor sedan</div></div>
+        <span class="review-source">Google</span>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Bästa tandläkaren jag haft. Dr. Eriksson är professionell, noggrann och tar verkligen sig tid att förklara allt. Resultatet efter tandblekning är fantastiskt."</p>
+      <div class="review-author">
+        <div class="review-avatar">MJ</div>
+        <div><div class="review-name">Marcus J.</div><div class="review-date">för 1 månad sedan</div></div>
+        <span class="review-source">Google</span>
+      </div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Mitt implantat ser ut exakt som min riktiga tand. Ingen aning om att det inte är äkta. Perfekt resultat och proffsig process från start till mål."</p>
+      <div class="review-author">
+        <div class="review-avatar">AG</div>
+        <div><div class="review-name">Anna G.</div><div class="review-date">för 3 månader sedan</div></div>
+        <span class="review-source">Google</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO -->
+<section id="info">
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-icon">📍</div>
+      <h3 class="info-title">Hitta till oss</h3>
+      <p class="info-text">Stureplan 4, 114 35 Stockholm<br><br>T-bana: Östermalmstorg (2 min gång)<br>Parkering: Sturegaraget<br>Buss: 4, 54, 91 — hållplats Stureplan</p>
+      <a href="https://maps.google.com" target="_blank" class="info-link">Öppna i Google Maps →</a>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">🕐</div>
+      <h3 class="info-title">Öppettider</h3>
+      <p class="info-text">
+        Måndag – torsdag: 07:30 – 20:00<br>
+        Fredag: 07:30 – 18:00<br>
+        Lördag: 09:00 – 15:00<br>
+        Söndag: Stängt<br><br>
+        Akuttider: Ring 08-123 456 78
+      </p>
+      <a href="#" onclick="openModal();return false" class="info-link">Boka en tid →</a>
+    </div>
+    <div class="info-card">
+      <div class="info-icon">💳</div>
+      <h3 class="info-title">Betalning & bidrag</h3>
+      <p class="info-text">Vi tar emot alla vanliga betalkort, Swish och faktura. Betalning sker efter behandling.<br><br>Tandvårdsbidraget och högkostnadsskyddet dras av automatiskt. Vi är anslutna till Försäkringskassan.</p>
+      <a href="#priser" class="info-link">Se prislistan →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-wrap">
+    <div class="faq-left">
+      <p class="section-eyebrow">Vanliga frågor</p>
+      <h2 class="section-title">Frågor &<br><em>svar</em></h2>
+      <p>Hittar du inte svaret du söker? Ring oss på 08-123 456 78 eller skicka ett mejl — vi svarar inom en timme under öppettid.</p>
+      <button class="btn-primary" onclick="openModal()" style="margin-top:2rem">Boka gratis konsultation →</button>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Hur bokar jag en tid?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Du bokar enkelt via formuläret på vår hemsida, ring oss på 08-123 456 78 eller skicka ett mejl till info@smilestudio.se. Vi bekräftar din bokning inom en timme under öppettid. Vi erbjuder även tider samma dag för akuta ärenden.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Tar ni emot tandvårdsbidraget?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Ja, vi är anslutna till Försäkringskassan och drar automatiskt av ditt allmänna tandvårdsbidrag (ATB) från din nota. Du behöver inte göra något — vi sköter det åt dig. Bidraget är 300 kr/år för dig som är 24–29 år, och 600 kr för dig som är 30 år eller äldre.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Vad kostar en undersökning?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">En basundersökning kostar 650 kr inklusive moms. Med tandvårdsbidraget kan priset bli så lågt som 50 kr för dig som inte använt ditt bidrag. Röntgen ingår vid behov utan extra kostnad vid första besöket.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Hur länge håller en tandblekning?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">En professionell tandblekning håller normalt 1–3 år beroende på dina matvanor och om du röker. Klinikblekning ger snabbare och mer intensivt resultat, medan hemblekning är skonsammare och passar dig med känsliga tänder. Vi rekommenderar att undvika kaffe, te och rödvin de första 48 timmarna.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Kan jag avboka min tid?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Ja, du kan kostnadsfritt avboka eller omboka din tid upp till 24 timmar innan besöket via "Mina sidor", e-post eller telefon. Avbokning med kortare varsel än 24 timmar debiteras med 350 kr.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Behandlar ni tandvårdsrädda patienter?</span><span class="faq-icon">+</span></div>
+        <div class="faq-a">Absolut — vi har lång erfarenhet av tandvårdsrädda patienter. Ange det gärna vid bokning så förbereder vi oss. Vi tar extra tid, förklarar varje steg och vi kan erbjuda lugnande medicinering vid behov. Ditt välmående kommer alltid i första hand.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOKNING -->
+<section id="bokning">
+  <div class="bokning-wrap">
+    <div class="bokning-left">
+      <p class="section-eyebrow">Boka tid</p>
+      <h2 class="section-title">Första steget<br>mot ditt <em>nya leende</em></h2>
+      <p>Fyll i formuläret eller ring oss direkt. Gratis konsultation ingår alltid vid första besöket — utan förpliktelser.</p>
+      <div class="bokning-features">
+        <div class="bokning-feature"><div class="bokning-feature-check">✓</div>Gratis konsultation vid första besöket</div>
+        <div class="bokning-feature"><div class="bokning-feature-check">✓</div>Bekräftelse inom en timme</div>
+        <div class="bokning-feature"><div class="bokning-feature-check">✓</div>Fri avbokning upp till 24h innan</div>
+        <div class="bokning-feature"><div class="bokning-feature-check">✓</div>Tider samma dag vid akuta besvär</div>
+      </div>
+      <div class="bokning-contact">
+        <div class="contact-item"><span class="contact-dot"></span>Telefon: <a href="tel:0812345678">08-123 456 78</a></div>
+        <div class="contact-item"><span class="contact-dot"></span>E-post: <a href="mailto:info@smilestudio.se">info@smilestudio.se</a></div>
+        <div class="contact-item"><span class="contact-dot"></span>Stureplan 4, 114 35 Stockholm</div>
+      </div>
+    </div>
+    <div class="booking-form">
+      <h3 class="booking-form-title">Boka en tid</h3>
+      <p class="booking-form-sub">Vi svarar inom en timme under öppettid.</p>
+      <div class="form-group">
+        <label>Behandling</label>
+        <select>
+          <option value="">Välj behandling...</option>
+          <optgroup label="Undersökning">
+            <option>Basundersökning – 650 kr</option>
+            <option>Akuttandvård – 750 kr</option>
+          </optgroup>
+          <optgroup label="Estetisk tandvård">
+            <option>Tandblekning – fr. 1 800 kr</option>
+            <option>Porslinfasader – fr. 4 500 kr/tand</option>
+            <option>Invisalign – fr. 19 000 kr</option>
+          </optgroup>
+          <optgroup label="Implantat">
+            <option>Tandimplantat – fr. 18 000 kr</option>
+            <option>Gratis konsultation implantat</option>
+          </optgroup>
+          <option>Jag vet inte – vill ha rådgivning</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label>Förnamn</label><input type="text" placeholder="Anna"></div>
+        <div class="form-group"><label>Efternamn</label><input type="text" placeholder="Lindqvist"></div>
+      </div>
+      <div class="form-group"><label>E-post</label><input type="email" placeholder="anna@exempel.se"></div>
+      <div class="form-group"><label>Telefon</label><input type="tel" placeholder="070-000 00 00"></div>
+      <div class="form-row">
+        <div class="form-group"><label>Önskat datum</label><input type="date"></div>
+        <div class="form-group"><label>Önskad tid</label>
+          <select><option>Morgon (07:30–10:00)</option><option>Förmiddag (10:00–12:00)</option><option>Eftermiddag (12:00–17:00)</option><option>Kväll (17:00–20:00)</option></select>
+        </div>
+      </div>
+      <div class="form-group"><label>Tandvårdsrädd? (valfritt)</label>
+        <select><option>Nej, inga problem</option><option>Lite nervös</option><option>Ja, behöver extra stöd</option></select>
+      </div>
+      <button class="form-submit" onclick="alert('Tack för din bokning! Vi återkommer inom en timme.')">Skicka bokningsförfrågan →</button>
+      <p class="form-note">🔒 Dina uppgifter hanteras säkert enligt GDPR</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-logo-main">Smile Studio</span>
+      <span class="footer-logo-sub">Stockholm</span>
+      <p>Estetisk och allmän tandvård i världsklass sedan 2009. Vi hjälper dig att le med självförtroende.</p>
+      <div class="footer-rating">
+        <span class="footer-rating-num">4.9</span>
+        <div>
+          <span class="footer-rating-stars">★★★★★</span>
+          <span class="footer-rating-text">847 Google-recensioner</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Behandlingar</h4>
+      <a href="#behandlingar">Tandblekning</a>
+      <a href="#behandlingar">Porslinfasader</a>
+      <a href="#behandlingar">Invisalign</a>
+      <a href="#behandlingar">Tandimplantat</a>
+      <a href="#behandlingar">Tandrengöring</a>
+      <a href="#behandlingar">Barntandvård</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kliniken</h4>
+      <a href="#team">Vårt team</a>
+      <a href="#recensioner">Recensioner</a>
+      <a href="#priser">Prislista</a>
+      <a href="#faq">Vanliga frågor</a>
+      <a href="#info">Hitta hit</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <a href="tel:0812345678">08-123 456 78</a>
+      <a href="mailto:info@smilestudio.se">info@smilestudio.se</a>
+      <a href="#info">Stureplan 4, Stockholm</a>
+      <a href="#bokning" onclick="openModal();return false">Boka tid online</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Smile Studio Stockholm AB. Org.nr 556XXX-XXXX. Alla rättigheter förbehållna.</p>
+    <div style="display:flex;gap:1.5rem">
+      <a href="#">Integritetspolicy</a>
+      <a href="#">Cookies</a>
+      <a href="#">Tillgänglighet</a>
+    </div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE BOOK -->
+<button class="sticky-book" onclick="openModal()">Boka tid →</button>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>20)
+})
+
+// Modal
+function openModal(){document.getElementById('modal').classList.add('open')}
+function closeModal(){document.getElementById('modal').classList.remove('open')}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()})
+
+// Treatment filter
+function filterTreatments(cat,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'))
+  btn.classList.add('active')
+  document.querySelectorAll('.treatment-card').forEach(card=>{
+    if(cat==='alla'||card.dataset.cat.includes(cat)){
+      card.style.display='block'
+    }else{
+      card.style.display='none'
+    }
+  })
+}
+
+// Price accordion
+function toggleCategory(header){
+  const items=header.nextElementSibling
+  const toggle=header.querySelector('.priser-cat-toggle')
+  const isOpen=items.classList.contains('open')
+  items.classList.toggle('open',!isOpen)
+  toggle.classList.toggle('open',!isOpen)
+}
+
+// FAQ
+function toggleFaq(q){
+  const answer=q.nextElementSibling
+  const icon=q.querySelector('.faq-icon')
+  const isOpen=answer.classList.contains('open')
+  document.querySelectorAll('.faq-a').forEach(a=>a.classList.remove('open'))
+  document.querySelectorAll('.faq-icon').forEach(i=>{i.classList.remove('open');i.textContent='+'})
+  if(!isOpen){
+    answer.classList.add('open')
+    icon.classList.add('open')
+    icon.textContent='+'
+  }
+}
+</script>
+</body>
+</html>
